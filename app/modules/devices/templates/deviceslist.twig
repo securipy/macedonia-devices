@@ -1,0 +1,130 @@
+{% extends "templates/base.twig" %} 
+
+{% block body %}
+
+
+
+   <!-- page content -->
+        <div class="right_col" role="main">
+
+          <div class="row">
+          	<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Selcciona un dispositivo</h2>
+                      <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li id="add-device"><a><i class="fa fa-plus"></i></a></li>
+                      </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table id="datatable" class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>ip/domain</th>
+                          <th>Date Start </th>
+                          <th>Date Finish </th>
+                          <th>acciones</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                      {% if devices.response == true %}
+                      	{% for device in devices.result%}
+                        <tr>
+                          <td>{{device.ip_domain}}</td>
+                          <td>{{device.date_execute}}</td>
+                          <td>{{device.date_finish}}</td>
+                          <td>
+                              <a href="/device/{{device.id_device}}" type="button" class="btn btn-default" data-id="{{device.id_device}}">Details</a>
+                              <button type="button" class="btn btn-danger delete_device" data-id="{{device.id_device}}">Eliminar</button>
+                          </td>
+            
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+
+        </div>
+        <!-- /page content -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" id="add-new-device-modal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel2">New Scan</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-4 col-sm-3 col-xs-12" for="first-name">Ip/Domain<span class="required">*</span>
+            </label>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <input id="server-ip-domain" required="required" class="form-control col-md-7 col-xs-12" type="text">
+            </div>
+          </div>  
+          <div class="form-group">
+            <label class="control-label col-md-4 col-sm-3 col-xs-12" for="first-name">Day Scan<span class="required">*</span>
+            </label>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <input id="day-scan" required="required" class="form-control col-md-7 col-xs-12" type="text">
+            </div>
+          </div> 
+          <div class="form-group">
+            <br>
+            Scripts:
+            <div id="servers">
+
+            </div> 
+          </div>
+
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="save-device">Save</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+{% block javascript %}
+ {{ parent() }}
+  <script src="{{ base_url() }}/js/bootstrap-datetimepicker-master/build/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script src="{{ base_url() }}/modules/devices/js/devices.js"></script>
+
+  <script src="http://momentjs.com/downloads/moment.js"></script>
+
+
+{% endblock %}
+
+
+{% block css %}
+ {{ parent() }}
+    <link href="{{ base_url() }}/js/bootstrap-datetimepicker-master/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+{% endblock %}
