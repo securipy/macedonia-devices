@@ -1,4 +1,4 @@
-# Nmap Distributed V0.1
+# Device Listing V0.1
 
 Nmap Distributed to Macedonia
 
@@ -7,4 +7,4 @@ Nmap Distributed to Macedonia
 * Copy files into Macedonia API
 
 
-That's it! Now go use the api.
+That's it! Now go use the module.
