@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<structure>
+	<options>
+		<text>device</text>
+		<view>/device/list</view>
+		<icon>fa fa-desktop</icon>
+	</options>
+</structure>
